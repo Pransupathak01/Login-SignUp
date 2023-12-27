@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Link } from 'react-router-dom';
+import NoteContext from "../context/noteContext";
 
 const SignUp: React.FC = () => {
+    const a = useContext(NoteContext);
+    const aData: any[] = Array.isArray(a)? a:[a];
+    console.log(aData);
+
     const [uname, setUname] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
@@ -21,10 +26,17 @@ const SignUp: React.FC = () => {
 
             <div className="flex items-center justify-center h-screen w-2/4">
                 <div>
-                    <h1 className="flex justify-center text-white text-5xl font-bold py-3">SMS-iT</h1>
-                    <span className="flex justify-center text-6xl font-bold py-5">SignUp</span>
-                    <span className="text-lg font-bold py-5">WITH SMS-iT YOU CAN START BUILDING:</span>
-                    <ul className="list-disc px-4">
+                    <h1 className="flex justify-center text-white text-5xl font-bold py-3">{a.company}</h1>
+                    <span className="flex justify-center text-6xl font-bold py-5">{a.screen[1]}</span>
+                    <span className="text-lg font-bold py-5">{a.heading}</span>
+                    {
+                        aData[0].uldata.map((data:string,index:string)=>(
+                            <ul className="list-disc px-4">
+                                 <li key={index} className="text-lg font-medium ">{data}</li>
+                            </ul>
+                    ))
+                    }
+                    {/* <ul className="list-disc px-4">
                         <li className="text-lg font-medium ">14 days FREE TRIAL</li>
                         <li className="text-lg font-medium ">SMS | Email | MMS | Fax | Voice | Social Media Marketing </li>
                         <li className="text-lg font-medium"> Wokflow Automations </li>
@@ -36,7 +48,7 @@ const SignUp: React.FC = () => {
                         <li className="text-lg font-medium ">Iteractive Elements/Videos</li>
                         <li className="text-lg font-medium ">Alerts and Notifications</li>
                         <li className="text-lg font-medium ">Phone Verification</li>
-                    </ul>
+                    </ul> */}
                 </div>
 
             </div>
@@ -82,10 +94,12 @@ const SignUp: React.FC = () => {
                         placeholder="Confirm Password"
                     />
                     <select className="w-full rounded-md p-2 px-3 mb-6 font-normal text-black bg-white">
-                        <option value="option1">(UTC-11:00) Midway Island</option>
-                        <option value="option2">(UTC-11:00)Samoa</option>
-                        <option value="option3">(UTC-11:00)Hawaii</option>
-                        {/* Add more options as needed */}
+                    {
+                        aData[0].dropData.map((data:string,index:string)=>(
+                                <option key={index} >{data}</option>
+
+                        ))
+                    }
                     </select>
                     <div className="flex items-start space-x-3 mb-6 p-1">
                         <input

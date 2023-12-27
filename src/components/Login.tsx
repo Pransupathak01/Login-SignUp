@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Link } from 'react-router-dom';
+import NoteContext from "../context/noteContext";
 
 const Login: React.FC = () => {
+    const a = useContext(NoteContext);
+    const aData: any[] = Array.isArray(a)? a:[a];
+    console.log(aData);
+
     const [email, setEmail] = useState<string>("");
     const [password, setPass] = useState<string>("");
 
@@ -19,27 +24,21 @@ const Login: React.FC = () => {
     return (
 
         <div className="flex h-screen w-screen bg-gradient-to-t from-blue-300 via-purple-300 to-pink-300 ">
-            <div className="flex justify-center items-center  h-screen w-2/5">
-
-                <div className="flex items-center justify-center h-screen w-2/4">
-                    <div>
-                        <h1 className="flex justify-center text-white text-5xl font-bold py-3">SMS-iT</h1>
-                        <span className="flex justify-center text-6xl font-bold py-5">Login</span>
-                        <span className="text-lg font-bold py-5">WITH SMS-iT YOU CAN START BUILDING:</span>
-                        <ul className="list-disc px-4">
-                            <li className="text-lg font-medium ">14 days FREE TRIAL</li>
-                            <li className="text-lg font-medium ">SMS | Email | MMS | Fax | Voice | Social Media Marketing </li>
-                            <li className="text-lg font-medium"> Wokflow Automations </li>
-                            <li className="text-lg font-medium ">Artificial Intelligence</li>
-                            <li className="text-lg font-medium ">Omnichannel Contact Center</li>
-                            <li className="text-lg font-medium ">Call Tracking</li>
-                            <li className="text-lg font-medium ">Smart Engagement Tools</li>
-                            <li className="text-lg font-medium ">Push Notification</li>
-                            <li className="text-lg font-medium ">Iteractive Elements/Videos</li>
-                            <li className="text-lg font-medium ">Alerts and Notifications</li>
-                            <li className="text-lg font-medium ">Phone Verification</li>
-                        </ul>
-                    </div>
+        <div className="flex justify-center items-center  h-screen w-2/5">
+                
+            <div className="flex items-center justify-center h-screen w-2/4">
+                <div>
+                    <h1 className="flex justify-center text-white text-5xl font-bold py-3">{a.company}</h1>
+                    <span className="flex justify-center text-6xl font-bold py-5">{a.screen[0]}</span>
+                    <span className="text-lg font-bold py-5">{a.heading}</span>
+                    {
+                        aData[0].uldata.map((data:string,index:string)=>(
+                            <ul className="list-disc px-4">
+                                 <li key={index} className="text-lg font-medium ">{data}</li>
+                            </ul>
+                    ))
+                    }
+                </div>
 
                 </div>
             </div>

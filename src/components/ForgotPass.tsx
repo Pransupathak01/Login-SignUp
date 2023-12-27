@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
+import NoteContext from "../context/noteContext";
 
 const ForgotPass: React.FC = () => {
+    const a = useContext(NoteContext);
+
     const [email, setEmail] = useState<string>("");
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -20,8 +23,8 @@ const ForgotPass: React.FC = () => {
 
                 <div className="flex items-center justify-center h-screen w-2/4">
                     <div>
-                        <h1 className="flex justify-center text-white text-5xl font-bold py-3">SMS-iT</h1>
-                        <span className="flex justify-center text-6xl font-bold py-4">Reset Password</span>
+                        <h1 className="flex justify-center text-white text-5xl font-bold py-3">{a.company}</h1>
+                        <span className="flex justify-center text-6xl font-bold py-4">{a.screen[2]}</span>
                         <span className="text-lg font-medium py-5">Did you forgot your password? You can use this form to reset your password now.</span>
                     </div>
                 </div>
@@ -47,10 +50,9 @@ const ForgotPass: React.FC = () => {
                             <span className="text-white font-semibold">Remember Me</span>
                         </div>
                         <button className="w-full rounded-md p-2 mb-6 bg-white font-extrabold text-lg text-black">RESET</button>
-                        <div className="flex items-center space-x-3 mb-6">
-                            <span className="text-white text-sm font-semibold ">Know Your Password?
-                            <Link to="/login"> Login</Link></span>
-                            <span className="text-white text-sm font-semibold">Dont't Have An Account?
+                        <div className="flex items-center space-x-9 mb-6">
+                            
+                            <span className="text-white text-sl font-semibold">Dont't Have An Account?
                                 <Link to="/signup"> Sign Up</Link>
                             </span>
                         </div>
